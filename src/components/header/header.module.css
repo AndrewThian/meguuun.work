@@ -1,0 +1,17 @@
+.div__container {
+  padding: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.h1 {
+  font-size: 2em;
+  text-transform: uppercase;
+}
+
+.anchor {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
