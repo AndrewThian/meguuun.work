@@ -1,0 +1,49 @@
+.withScroll__container,
+.withoutScroll__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 200px;
+
+  transform: rotate(-90deg);
+
+  position: absolute;
+  top: 150px;
+  left: -64px;
+}
+
+.withScroll__container {
+  top: 150px;
+}
+
+.withoutScroll__container {
+  top: 238px;
+}
+
+.h3 {
+  font-size: 1.2em;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.anchor {
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.activeAnchor {
+  color: #f54c67;
+}
+
+@media only screen and (max-width: 600px) {
+  .vertical__container {
+    left: -76px;
+  }
+
+  .h3 {
+    font-size: 1.3em;
+    letter-spacing: 0.15em;
+  }
+}

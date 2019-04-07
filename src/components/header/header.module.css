@@ -1,21 +1,67 @@
-.div__container {
+.header {
+  position: fixed;
+
+  width: 100%;
+  letter-spacing: 0.2em;
+}
+
+.horizontal__container {
   padding: 2em;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
 
-  position: fixed;
-  width: 100%;
+.vertical__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  width: 200px;
+
+  transform: rotate(-90deg);
+
+  position: absolute;
+  top: 150px;
+  left: -64px;
+}
+
+.h1,
+.h3 {
+  text-transform: uppercase;
+  margin: 0;
 }
 
 .h1 {
   font-size: 2em;
-  text-transform: uppercase;
-  margin: 0;
+}
+
+.h3 {
+  font-size: 1.2em;
 }
 
 .anchor {
   text-decoration: none;
   color: black;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    font-size: 0.85em;
+    letter-spacing: 0.1em;
+  }
+
+  .horizontal__container {
+    padding: 1.5em;
+  }
+
+  .vertical__container {
+    left: -76px;
+  }
+
+  .h3 {
+    font-size: 1.3em;
+    letter-spacing: 0.15em;
+  }
 }

@@ -5,3 +5,17 @@
  */
 
 // You can delete this file if you're not using it
+// import React, { useEffect } from "react";
+// import { useLax } from "use-lax";
+
+// const LaxWrapper = ({ children }) => {
+//   useLax();
+
+//   return <>{children}</>;
+// };
+import React from "react";
+import LaxWrapper from "./src/utils/LaxWrapper";
+
+export const wrapRootElement = ({ element }) => {
+  return <LaxWrapper>{element}</LaxWrapper>;
+};

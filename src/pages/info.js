@@ -1,15 +1,16 @@
 import React from "react";
 
 import Layout from "../components/layout/layout";
-import Block from "../components/block";
 import SEO from "../components/seo";
 
-const IndexPage = () => {
+import styles from "./info.module.css";
+
+const InfoPage = () => {
   return (
-    <Layout isMainPage>
+    <Layout className={styles.layout}>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
     </Layout>
   );
 };
 
-export default IndexPage;
+export default InfoPage;
