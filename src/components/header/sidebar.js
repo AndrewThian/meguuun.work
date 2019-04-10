@@ -27,7 +27,7 @@ export const Sidebar = ({ withScroll }) => {
         <Link
           to="/info"
           activeClassName={styles.activeAnchor}
-          className={styles.anchor}
+          className={classNames(styles.anchor, styles.infoAnchor)}
         >
           Info
         </Link>

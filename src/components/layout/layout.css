@@ -10,10 +10,35 @@ html {
 }
 body {
   margin: 0;
-  font-size: 14px;
+  font-size: 17px;
   width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  letter-spacing: 0.01em;
+}
+
+h1 {
+  font-size: 2.588em;
+}
+
+h3 {
+  font-size: 1.294em;
+}
+
+h1,
+h3 {
+  font-family: "Karla", sans-serif;
+  font-weight: bold;
+}
+
+@media only screen and (max-width: 420px) {
+  h1 {
+    font-size: 1.2em;
+  }
+
+  h3 {
+    font-size: 0.6em;
+  }
 }
 
 .block {

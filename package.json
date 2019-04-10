@@ -13,6 +13,7 @@
     "gatsby-plugin-postcss": "^2.0.7",
     "gatsby-plugin-react-helmet": "^3.0.11",
     "gatsby-plugin-sharp": "^2.0.32",
+    "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.0.28",
     "gatsby-transformer-sharp": "^2.1.17",
     "lax.js": "1.2.3",

@@ -2,11 +2,10 @@
   position: fixed;
 
   width: 100%;
-  letter-spacing: 0.2em;
 }
 
 .horizontal__container {
-  padding: 2em;
+  padding: 44px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -32,14 +31,6 @@
   margin: 0;
 }
 
-.h1 {
-  font-size: 2em;
-}
-
-.h3 {
-  font-size: 1.2em;
-}
-
 .anchor {
   text-decoration: none;
   color: black;
@@ -47,21 +38,11 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .header {
-    font-size: 0.85em;
-    letter-spacing: 0.1em;
-  }
-
   .horizontal__container {
     padding: 1.5em;
   }
 
   .vertical__container {
     left: -76px;
-  }
-
-  .h3 {
-    font-size: 1.3em;
-    letter-spacing: 0.15em;
   }
 }

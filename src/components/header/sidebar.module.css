@@ -4,25 +4,23 @@
   flex-direction: row;
   justify-content: space-between;
 
-  width: 200px;
+  width: 220.65px;
 
   transform: rotate(-90deg);
 
   position: absolute;
-  top: 150px;
-  left: -64px;
+  left: -55px;
 }
 
 .withScroll__container {
-  top: 150px;
+  top: 138px;
 }
 
 .withoutScroll__container {
-  top: 238px;
+  top: 277px;
 }
 
 .h3 {
-  font-size: 1.2em;
   text-transform: uppercase;
   margin: 0;
 }
@@ -37,13 +35,21 @@
   color: #f54c67;
 }
 
+.infoAnchor {
+  margin-right: 105px;
+}
+
 @media only screen and (max-width: 600px) {
-  .vertical__container {
+  .withScroll__container,
+  .withoutScroll__container {
     left: -76px;
   }
 
-  .h3 {
-    font-size: 1.3em;
-    letter-spacing: 0.15em;
+  .withScroll__container {
+    top: 167px;
+  }
+
+  .withoutScroll__container {
+    top: 229px;
   }
 }

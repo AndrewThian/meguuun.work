@@ -1,12 +1,10 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import lax from "lax.js";
 
-class LaxWrapper extends Component {
-  constructor() {
-    super();
+const LaxWrapper = ({ children }) => {
+  lax.setup();
 
-    lax.setup();
-
+  useEffect(() => {
     const updateLax = () => {
       lax.update(window.scrollY);
     };
@@ -14,11 +12,13 @@ class LaxWrapper extends Component {
     document.addEventListener("scroll", updateLax, false);
 
     updateLax();
-  }
 
-  render() {
-    return <>{this.props.children}</>;
-  }
-}
+    return () => {
+      document.removeEventListener("scroll", updateLax);
+    };
+  }, []);
+
+  return <>{this.props.children}</>;
+};
 
 export default LaxWrapper;
