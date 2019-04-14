@@ -24,9 +24,17 @@ const Layout = ({ children, isMainPage, className }) => {
       render={({ site: { siteMetadata } }) => (
         <>
           <Header {...siteMetadata} isMainPage={isMainPage} />
-          <div className={classNames(styles.layout__container, className)}>
-            <main>
-              {isMainPage && <Block />}
+          <div
+            className={classNames(styles.container, className, {
+              [styles.isMain]: isMainPage,
+            })}
+          >
+            {isMainPage && <Block />}
+            <main
+              className={classNames(styles.main__container, {
+                [styles.isMain]: isMainPage,
+              })}
+            >
               {children}
             </main>
             <footer />

@@ -1,6 +1,8 @@
 .header {
   position: fixed;
 
+  z-index: 10;
+
   width: 100%;
 }
 
@@ -9,20 +11,6 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-}
-
-.vertical__container {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  width: 200px;
-
-  transform: rotate(-90deg);
-
-  position: absolute;
-  top: 150px;
-  left: -64px;
 }
 
 .h1,
@@ -38,11 +26,4 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .horizontal__container {
-    padding: 1.5em;
-  }
-
-  .vertical__container {
-    left: -76px;
-  }
 }

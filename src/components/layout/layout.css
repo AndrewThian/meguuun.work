@@ -14,21 +14,29 @@ body {
   width: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior-y: none;
   letter-spacing: 0.01em;
 }
 
 h1 {
-  font-size: 2.588em;
+  font-size: 43px;
 }
 
 h3 {
-  font-size: 1.294em;
+  font-size: 21px;
 }
 
 h1,
 h3 {
   font-family: "Karla", sans-serif;
   font-weight: bold;
+}
+
+span,
+p {
+  font-family: "Montserrat", sans-serif;
+  font-size: 17px;
+  line-height: 23px;
 }
 
 @media only screen and (max-width: 420px) {
@@ -43,8 +51,8 @@ h3 {
 
 .block {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   position: absolute;
 
-  z-index: -1;
+  z-index: -10;
 }

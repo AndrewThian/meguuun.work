@@ -18,7 +18,7 @@ const LaxWrapper = ({ children }) => {
     };
   }, []);
 
-  return <>{this.props.children}</>;
+  return <>{children}</>;
 };
 
 export default LaxWrapper;

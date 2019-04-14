@@ -8,7 +8,7 @@ const Block = ({ color }) => {
   return (
     <div
       ref={ref}
-      className="block"
+      className="block lax"
       data-lax-opacity="0 1, 100 1, 200 0"
       style={{ backgroundColor: color }}
     />

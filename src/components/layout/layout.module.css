@@ -1,6 +1,20 @@
-.layout__container {
+.container {
   margin: 0 auto;
   padding-top: 0;
 
+  height: 100vh;
+  position: relative;
+}
+
+.main__container {
+  padding: 184px;
+  padding-bottom: 0px;
+}
+
+.isMain {
   height: 200vh;
+}
+
+.background {
+  background-color: #fedd00;
 }

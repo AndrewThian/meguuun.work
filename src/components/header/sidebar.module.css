@@ -4,20 +4,20 @@
   flex-direction: row;
   justify-content: space-between;
 
-  width: 220.65px;
+  width: 203.5px;
 
   transform: rotate(-90deg);
 
   position: absolute;
-  left: -55px;
+  left: -47px;
 }
 
 .withScroll__container {
-  top: 138px;
+  top: 135px;
 }
 
 .withoutScroll__container {
-  top: 277px;
+  top: 273px;
 }
 
 .h3 {
@@ -36,7 +36,7 @@
 }
 
 .infoAnchor {
-  margin-right: 105px;
+  margin-right: 93px;
 }
 
 @media only screen and (max-width: 600px) {

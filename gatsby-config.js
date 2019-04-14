@@ -16,6 +16,13 @@ module.exports = {
       },
     },
     {
+      resolve: `gatsby-source-contentful`,
+      options: {
+        spaceId: `47d45u88cykb`,
+        accessToken: `fd19dcdecb73b23f7272eb988013ef673b0902f7225dc9f4c331a5bc25033a7f`,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
