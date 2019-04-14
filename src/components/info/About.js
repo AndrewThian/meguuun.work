@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { StaticQuery, graphql } from "gatsby";
 import styles from "./About.module.css";
 
@@ -47,7 +48,9 @@ const About = () => (
                 <span>Featured on</span>
                 <div className={styles.featured__innerContainer}>
                   {featuredOn.map(feature => (
-                    <span className={styles.bold}>{feature}</span>
+                    <span className={classNames(styles.bold, styles.italic)}>
+                      {feature}
+                    </span>
                   ))}
                 </div>
               </div>
@@ -56,11 +59,15 @@ const About = () => (
               </div>
               <div>
                 <div>
-                  <span className={styles.contatct__title}>Email </span>
+                  <span className={classNames(styles.bold, styles.italic)}>
+                    Email{" "}
+                  </span>
                   <span>{email}</span>
                 </div>
                 <div>
-                  <span className={styles.contatct__title}>Phone </span>
+                  <span className={classNames(styles.bold, styles.italic)}>
+                    Phone{" "}
+                  </span>
                   <span>{phoneNumber}</span>
                 </div>
               </div>

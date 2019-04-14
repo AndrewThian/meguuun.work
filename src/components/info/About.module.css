@@ -13,12 +13,11 @@
   font-weight: 600;
 }
 
+.italic {
+  font-style: italic;
+}
+
 .featured__innerContainer {
   display: flex;
   flex-direction: column;
-}
-
-.contatct__title {
-  font-weight: 600;
-  font-style: italic;
 }
