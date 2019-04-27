@@ -40,7 +40,7 @@ p {
   line-height: 23px;
 }
 
-@media only screen and (max-width: 420px) {
+@media only screen and (max-width: 500px) {
   h1 {
     font-size: 1.2em;
   }
