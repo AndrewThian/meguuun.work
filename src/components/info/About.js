@@ -34,13 +34,14 @@ const About = () => (
         {edges.map(
           ({
             node: {
+              id,
               summary: { summary: summaryText },
               comments: { comments: commentsText },
               featuredOn,
-              contact: { email, phoneNumber, etc },
+              contact: { email, phoneNumber },
             },
           }) => (
-            <div className={styles.about__container}>
+            <div key={id} className={styles.about__container}>
               <div>
                 <span>{summaryText}</span>
               </div>
@@ -48,7 +49,10 @@ const About = () => (
                 <span>Featured on</span>
                 <div className={styles.featured__innerContainer}>
                   {featuredOn.map(feature => (
-                    <span className={classNames(styles.bold, styles.italic)}>
+                    <span
+                      key={feature}
+                      className={classNames(styles.bold, styles.italic)}
+                    >
                       {feature}
                     </span>
                   ))}

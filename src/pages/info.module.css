@@ -16,7 +16,7 @@
 }
 
 .column {
-  transition: all 500ms;
+  transition: opacity 500ms;
 }
 
 .info__title {
@@ -33,4 +33,24 @@
 
 .column__show {
   opacity: 1;
+}
+
+@media only screen and (max-width: 420px) {
+  .columns {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .h1 {
+    font-size: 28px;
+  }
+
+  .column,
+  .small__container {
+    margin-bottom: 40px;
+  }
+
+  .layout {
+    height: 100%;
+  }
 }

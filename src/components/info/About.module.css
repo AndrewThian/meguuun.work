@@ -21,3 +21,13 @@
   display: flex;
   flex-direction: column;
 }
+
+@media only screen and (max-width: 420px) {
+  .container {
+    margin-top: 16px;
+  }
+
+  .about__container {
+    grid-gap: 15px;
+  }
+}

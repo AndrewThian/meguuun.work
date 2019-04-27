@@ -1,17 +1,16 @@
 import React, { useState, useEffect } from "react";
 import classNames from "classnames";
 
-import Layout from "../components/layout/layout";
-import SEO from "../components/seo";
-
 import styles from "./info.module.css";
 
+import SEO from "../components/seo";
 import About from "../components/info/About";
+import Layout from "../components/layout/layout";
 import WorkList from "../components/info/WorkList";
 import ClientsList from "../components/info/ClientsList";
 import EduList from "../components/info/EduList";
 
-const transitionTime = 500;
+const WAIT_TIME = 100;
 
 const FadeIn = ({ children, show }) => (
   <div
@@ -29,15 +28,10 @@ const InfoPage = () => {
   const [showRight, setShowRight] = useState(false);
 
   useEffect(() => {
-    setShowLeft(true);
-
-    if (showLeft) {
-      setTimeout(() => setShowCenter(true), transitionTime);
-    }
-    if (showCenter) {
-      setTimeout(() => setShowRight(true), transitionTime);
-    }
-  }, [showLeft, showCenter]);
+    setTimeout(() => setShowLeft(true), WAIT_TIME);
+    setTimeout(() => setShowCenter(true), WAIT_TIME * 2);
+    setTimeout(() => setShowRight(true), WAIT_TIME * 4);
+  }, []);
 
   return (
     <Layout className={styles.layout}>

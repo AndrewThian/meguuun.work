@@ -25,5 +25,12 @@
   cursor: pointer;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 420px) {
+  .h1 {
+    font-size: 28px;
+  }
+
+  .horizontal__container {
+    padding: 30px;
+  }
 }

@@ -6,9 +6,9 @@ import { StaticQuery, graphql } from "gatsby";
 import Header from "../header/header";
 import Block from "../block";
 import styles from "./layout.module.css";
-import "./layout.css";
+import "./global.css";
 
-const Layout = ({ children, isMainPage, className }) => {
+const Layout = ({ children, isMainPage, className, innerClassName }) => {
   return (
     <StaticQuery
       query={graphql`
@@ -31,7 +31,7 @@ const Layout = ({ children, isMainPage, className }) => {
           >
             {isMainPage && <Block />}
             <main
-              className={classNames(styles.main__container, {
+              className={classNames(styles.main__container, innerClassName, {
                 [styles.isMain]: isMainPage,
               })}
             >
