@@ -8,11 +8,7 @@ import styles from "./sidebar.module.css";
 export const ScrollSidebar = () => {
   const verticalBarRef = useLaxElement();
   return (
-    <div
-      ref={verticalBarRef}
-      className="lax"
-      data-lax-translate-x="0 -100, 100 0 | speed=0.5"
-    >
+    <div ref={verticalBarRef} data-lax-translate-x="0 -100, 100 0 | speed=0.5">
       <Sidebar withScroll />
     </div>
   );

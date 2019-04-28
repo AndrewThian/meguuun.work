@@ -9,7 +9,7 @@ import styles from "./index.module.css";
 const IndexPage = () => {
   return (
     <Layout isMainPage>
-      <SEO title="Ho.me" keywords={[`gatsby`, `application`, `react`]} />
+      <SEO title="Megun" keywords={[`gatsby`, `application`, `react`]} />
     </Layout>
   );
 };
