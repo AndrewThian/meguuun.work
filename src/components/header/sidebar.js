@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
 import classNames from "classnames";
-import PropTypes from "prop-types";
 import { useLaxElement } from "use-lax";
 
 import styles from "./sidebar.module.css";
@@ -9,7 +8,11 @@ import styles from "./sidebar.module.css";
 export const ScrollSidebar = () => {
   const verticalBarRef = useLaxElement();
   return (
-    <div ref={verticalBarRef} data-lax-translate-x="0 -100, 100 0 | speed=0.5">
+    <div
+      ref={verticalBarRef}
+      className="lax"
+      data-lax-translate-x="0 -100, 100 0 | speed=0.5"
+    >
       <Sidebar withScroll />
     </div>
   );
