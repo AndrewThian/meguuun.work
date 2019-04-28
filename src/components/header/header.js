@@ -1,7 +1,6 @@
 import { Link } from "gatsby";
 import PropTypes from "prop-types";
 import React from "react";
-import { useLaxElement } from "use-lax";
 
 import Subtitle from "./subtitle";
 import { ScrollSidebar, Sidebar } from "./sidebar";

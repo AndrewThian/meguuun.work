@@ -17,5 +17,6 @@ import React from "react";
 import LaxWrapper from "./src/utils/LaxWrapper";
 
 export const wrapRootElement = ({ element }) => {
+  console.log("running");
   return <LaxWrapper>{element}</LaxWrapper>;
 };

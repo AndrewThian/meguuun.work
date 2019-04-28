@@ -33,24 +33,15 @@ const FadeIn = ({ children, index }) => {
   return (
     <div
       ref={fadeInRef}
-      data-lax-opacity={isMobile() ? "(vh-100) 0, (vh-200) 1, (vh-300) 1" : ""}
+      data-lax-opacity="(vh-100) 0, (vh-200) 1, (vh-300) 1"
       data-lax-anchor="self"
       className={classNames(styles.column, styles.column__hide, {
         [styles.column__show]: showFade,
-        lax: !showFade,
       })}
     >
       {children}
     </div>
   );
-};
-
-FadeIn.propTypes = {
-  show: PropTypes.bool,
-};
-
-FadeIn.defaultProps = {
-  show: false,
 };
 
 const InfoPage = () => {
