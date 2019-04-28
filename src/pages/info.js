@@ -14,16 +14,30 @@ import EduList from "../components/info/EduList";
 import { isMobile } from "../utils/CheckMobile";
 
 const WAIT_TIME = 100;
+const MULTIPLIER = 2;
 
-const FadeIn = ({ children, show }) => {
+const FadeIn = ({ children, index }) => {
+  const [showFade, setShowFade] = useState(false);
   const fadeInRef = useLaxElement();
+  let animOffset = WAIT_TIME;
+  if (index > 0) {
+    animOffset = index * MULTIPLIER * WAIT_TIME;
+  }
+
+  useEffect(() => {
+    if (!isMobile()) {
+      setTimeout(() => setShowFade(true), animOffset);
+    }
+  }, []);
 
   return (
     <div
       ref={fadeInRef}
+      data-lax-opacity={isMobile() ? "(vh-100) 0, (vh-200) 1, (vh-300) 1" : ""}
+      data-lax-anchor="self"
       className={classNames(styles.column, styles.column__hide, {
-        [styles.column__show]: show,
-        lax: !show,
+        [styles.column__show]: showFade,
+        lax: !showFade,
       })}
     >
       {children}
@@ -40,29 +54,17 @@ FadeIn.defaultProps = {
 };
 
 const InfoPage = () => {
-  const [showLeft, setShowLeft] = useState(false);
-  const [showCenter, setShowCenter] = useState(false);
-  const [showRight, setShowRight] = useState(false);
-
-  useEffect(() => {
-    if (!isMobile()) {
-      setTimeout(() => setShowLeft(true), WAIT_TIME);
-      setTimeout(() => setShowCenter(true), WAIT_TIME * 2);
-      setTimeout(() => setShowRight(true), WAIT_TIME * 4);
-    }
-  }, []);
-
   return (
     <Layout className={styles.layout}>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <div className={styles.columns}>
-        <FadeIn show={showLeft}>
+        <FadeIn index={0}>
           <div>
             <h1 className={styles.h1}>About</h1>
             <About />
           </div>
         </FadeIn>
-        <FadeIn show={showCenter}>
+        <FadeIn index={1}>
           <div>
             <div className={styles.small__container}>
               <h1 className={styles.h1}>Clients</h1>
@@ -74,7 +76,7 @@ const InfoPage = () => {
             </div>
           </div>
         </FadeIn>
-        <FadeIn show={showRight}>
+        <FadeIn index={2}>
           <div>
             <h1 className={classNames(styles.h1, styles.info__title)}>Work</h1>
             <WorkList />
