@@ -8,7 +8,7 @@ import styles from "./sidebar.module.css";
 export const ScrollSidebar = () => {
   const verticalBarRef = useLaxElement();
   return (
-    <div ref={verticalBarRef} data-lax-translate-x="0 -100, 100 0 | speed=0.5">
+    <div ref={verticalBarRef} data-lax-translate-x="0 0, 100 153 | speed=0.5">
       <Sidebar withScroll />
     </div>
   );
@@ -24,7 +24,7 @@ export const Sidebar = ({ withScroll }) => {
     >
       <h3 className={styles.h3}>
         <Link
-          to="/info"
+          to="/info/"
           activeClassName={styles.activeAnchor}
           className={classNames(styles.anchor, styles.infoAnchor)}
         >
@@ -33,7 +33,7 @@ export const Sidebar = ({ withScroll }) => {
       </h3>
       <h3 className={styles.h3}>
         <Link
-          to="/work"
+          to="/work/"
           activeClassName={styles.activeAnchor}
           className={styles.anchor}
         >

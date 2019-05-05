@@ -14,6 +14,7 @@
 
 .withScroll__container {
   top: 135px;
+  left: -200px;
 }
 
 .withoutScroll__container {
