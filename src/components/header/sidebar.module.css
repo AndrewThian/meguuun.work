@@ -1,3 +1,6 @@
+@value topHeight_mobile: 85px;
+@value topHeight_desktop: 135px;
+
 .withScroll__container,
 .withoutScroll__container {
   display: flex;
@@ -9,16 +12,16 @@
   transform: rotate(-90deg);
 
   position: absolute;
-  left: -47px;
 }
 
 .withScroll__container {
-  top: 135px;
+  top: topHeight_desktop;
   left: -200px;
 }
 
 .withoutScroll__container {
   top: 273px;
+  left: -47px;
 }
 
 .h3 {
@@ -43,16 +46,17 @@
 @media only screen and (max-width: 500px) {
   .withScroll__container,
   .withoutScroll__container {
-    left: -33px;
     width: 140.5px;
   }
 
   .withScroll__container {
-    top: 85px;
+    left: -186px;
+    top: topHeight_mobile;
   }
 
   .withoutScroll__container {
-    top: 176px;
+    left: -33px;
+    top: calc(topHeight_mobile * 2.0705);
   }
 
   .h3 {

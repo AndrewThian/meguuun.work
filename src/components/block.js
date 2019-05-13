@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { useLaxElement } from "use-lax";
+import UseLaxElement from "../utils/UseLaxElement";
 
 const Block = ({ color }) => {
-  const ref = useLaxElement();
+  const ref = UseLaxElement();
 
   return (
     <div

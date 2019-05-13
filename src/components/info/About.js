@@ -22,7 +22,6 @@ const About = () => (
                 id
                 email
                 phoneNumber
-                etc
               }
             }
           }

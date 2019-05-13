@@ -1,12 +1,12 @@
 import PropTypes from "prop-types";
 import classNames from "classnames";
 import React from "react";
-import { useLaxElement } from "use-lax";
+import UseLaxElement from "../../utils/UseLaxElement";
 
 import styles from "./subtitle.module.css";
 
 const Subtitle = ({ children }) => {
-  const ref = useLaxElement();
+  const ref = UseLaxElement();
   return (
     <h1
       ref={ref}
