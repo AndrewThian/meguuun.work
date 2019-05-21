@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "gatsby";
+import { Scroll } from "react-fns";
 import classNames from "classnames";
 import UseLaxElement from "../../utils/UseLaxElement";
 

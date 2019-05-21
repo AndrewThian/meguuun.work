@@ -18,8 +18,8 @@ const IndexPage = ({
       <section className={styles.container}>
         {assets.map(({ node: { id, title, thumbnail: { fluid } } }) => {
           return (
-            <article className={styles.image__container}>
-              <Img key={id} fluid={fluid} alt={title} />
+            <article key={id} className={styles.image__container}>
+              <Img fluid={fluid} alt={title} />
             </article>
           );
         })}
