@@ -33,6 +33,7 @@ const Layout = ({ children, isMainPage, className, innerClassName }) => {
             <main
               className={classNames(styles.main__container, innerClassName, {
                 [styles.isMain]: isMainPage,
+                [styles.main__isMain]: isMainPage,
               })}
             >
               {children}

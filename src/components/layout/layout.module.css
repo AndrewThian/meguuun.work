@@ -12,7 +12,13 @@
 }
 
 .isMain {
-  height: 200vh;
+  height: 150vh;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+.main__isMain {
+  padding-top: 115vh;
 }
 
 .background {
@@ -22,6 +28,11 @@
 @media only screen and (max-width: 500px) {
   .main__container {
     padding: 110px 30px 0px 80px;
+  }
+
+  .main__isMain {
+    padding: 0;
+    padding-top: 100vh;
   }
 
   .container {

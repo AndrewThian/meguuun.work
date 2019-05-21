@@ -53,24 +53,39 @@ const Fade = ({ children, index }) => {
 };
 
 const COMPONENT_MAP = [
-  <>
-    <h1 className={styles.h1}>About</h1>
-    <About />
-  </>,
-  <>
-    <div className={styles.small__container}>
-      <h1 className={styles.h1}>Clients</h1>
-      <ClientsList />
-    </div>
-    <div>
-      <h1 className={styles.h1}>Education</h1>
-      <EduList />
-    </div>
-  </>,
-  <>
-    <h1 className={classNames(styles.h1, styles.info__title)}>Work</h1>
-    <WorkList />
-  </>,
+  {
+    component: (
+      <>
+        <h1 className={styles.h1}>About</h1>
+        <About />
+      </>
+    ),
+    key: "about",
+  },
+  {
+    component: (
+      <>
+        <div className={styles.small__container}>
+          <h1 className={styles.h1}>Clients</h1>
+          <ClientsList />
+        </div>
+        <div>
+          <h1 className={styles.h1}>Education</h1>
+          <EduList />
+        </div>
+      </>
+    ),
+    key: "clients_education",
+  },
+  {
+    component: (
+      <>
+        <h1 className={classNames(styles.h1, styles.info__title)}>Work</h1>
+        <WorkList />
+      </>
+    ),
+    key: "work",
+  },
 ];
 
 const InfoPage = () => {
@@ -78,8 +93,10 @@ const InfoPage = () => {
     <Layout className={styles.layout}>
       <SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />
       <div className={styles.columns}>
-        {COMPONENT_MAP.map((component, index) => (
-          <Fade index={index}>{component}</Fade>
+        {COMPONENT_MAP.map((map, index) => (
+          <Fade key={map.key} index={index}>
+            {map.component}
+          </Fade>
         ))}
       </div>
     </Layout>
