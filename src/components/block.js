@@ -9,7 +9,7 @@ const Block = ({ color }) => {
     <div
       ref={ref}
       className="block lax"
-      data-lax-opacity="0 1, 100 1, 200 0"
+      data-lax-opacity="0 1, 50 1, 150 0"
       style={{ backgroundColor: color }}
     />
   );

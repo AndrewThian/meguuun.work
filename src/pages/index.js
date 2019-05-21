@@ -16,24 +16,13 @@ const IndexPage = ({
     <Layout isMainPage>
       <SEO title="Megun" keywords={[`gatsby`, `application`, `react`]} />
       <section className={styles.container}>
-        {/* {[10, 13, 19, 15, 16, 10, 11, 12, 13, 13, 19, 11, 11, 13].map(
-          (val, idx) => {
-            return (
-              <article
-                className={styles.outer}
-                style={{ width: `${val * 10}px`, height: `${val * 10}px` }}
-                key={`${val}_${idx}`}
-              >
-                {`${val}_${idx}`}
-              </article>
-            );
-          }
-        )} */}
-        <article>
-          {assets.map(({ node: { title, fluid } }) => {
-            return <Img key={fluid.src} fluid={fluid} alt={title} />;
-          })}
-        </article>
+        {assets.map(({ node: { id, title, thumbnail: { fluid } } }) => {
+          return (
+            <article className={styles.image__container}>
+              <Img key={id} fluid={fluid} alt={title} />
+            </article>
+          );
+        })}
       </section>
     </Layout>
   );
@@ -47,9 +36,9 @@ export const query = graphql`
       edges {
         node {
           id
-          slug
+          title
           thumbnail {
-            fluid {
+            fluid(maxWidth: 500) {
               ...GatsbyContentfulFluid_withWebp_noBase64
             }
           }
