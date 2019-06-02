@@ -1,9 +1,8 @@
 import React from "react";
 import { graphql } from "gatsby";
 import { WindowSize } from "react-fns";
-import Img from "gatsby-image";
-import classNames from "classnames";
 
+import ProjectThumbnail from "../components/index/ProjectThumbnail";
 import Layout from "../components/layout/layout";
 import SEO from "../components/seo";
 
@@ -21,22 +20,6 @@ import styles from "./index.module.css";
  * 3. make use of window resize and a simple formula to derive how to scale the images
  */
 
-const getOriginalImgDetails = ({
-  details: {
-    originalImg: { width, height },
-  },
-}) => {
-  return [width, height];
-};
-
-const getAspectRatio = (width, height) => {
-  return (height / width).toFixed();
-};
-
-const getAreaLimit = browserAspectRatio => {
-  return browserAspectRatio < 1 ? 4.5 : 7;
-};
-
 const IndexPage = ({
   data: {
     allContentfulIndexPage: { edges: assets },
@@ -49,47 +32,18 @@ const IndexPage = ({
         render={({ width: innerWidth, height: innerHeight }) => {
           return (
             <section className={styles.container}>
-              {assets.map(
-                (
-                  {
-                    node: {
-                      id,
-                      title,
-                      thumbnail: { fluid, file },
-                    },
-                  },
-                  idx
-                ) => {
-                  const [srcWidth, srcHeight] = getOriginalImgDetails(file);
-                  const browserAspectRatio = getAspectRatio(
-                    innerWidth,
-                    innerHeight
-                  );
-                  const areaLimit = getAreaLimit(browserAspectRatio);
-                  const maxArea = (innerWidth * innerHeight) / areaLimit;
-                  const diffRatio = Math.sqrt(maxArea / (srcWidth * srcHeight));
-
-                  return (
-                    <div
-                      key={id}
-                      className={classNames(styles.image__container, {
-                        [styles.isFirst]: idx === 0,
-                        [styles.isLast]: idx === assets.length,
-                      })}
-                      style={{
-                        width: srcWidth * diffRatio,
-                        height: srcHeight * diffRatio,
-                      }}
-                    >
-                      <Img
-                        fluid={fluid}
-                        alt={title}
-                        imgStyle={{ objectFit: "contain" }}
-                      />
-                    </div>
-                  );
-                }
-              )}
+              {assets.map((asset, idx) => {
+                return (
+                  <ProjectThumbnail
+                    key={asset.node.id}
+                    asset={asset}
+                    innerWidth={innerWidth}
+                    innerHeight={innerHeight}
+                    isFirst={idx === 0}
+                    isLast={idx === assets.length - 1}
+                  />
+                );
+              })}
             </section>
           );
         }}

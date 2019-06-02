@@ -1,0 +1,41 @@
+.image__container {
+  display: inline-block;
+  margin: 1.5em;
+
+  position: relative;
+}
+
+.isFirst {
+  margin-top: 0;
+}
+
+.isLast {
+  margin-bottom: 0;
+}
+
+@media only screen and (max-width: 600px) {
+  .image__container {
+    display: inline-block;
+    margin: 1em 0;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 1100px) {
+  .image__container {
+    display: inline-block;
+    margin: 1.5em;
+  }
+}
+
+.image__mouseEnter {
+  cursor: none;
+}
+
+.title {
+  display: none;
+}
+
+.title__mouseEnter {
+  display: inline-block;
+  position: absolute;
+}
