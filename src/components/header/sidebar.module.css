@@ -37,13 +37,15 @@
 
 .activeAnchor {
   color: #f54c67;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .infoAnchor {
   margin-right: 93px;
 }
 
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 600px) {
   .withScroll__container,
   .withoutScroll__container {
     width: 140.5px;

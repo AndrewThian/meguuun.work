@@ -17,30 +17,41 @@ export const ScrollSidebar = () => {
 
 export const Sidebar = ({ withScroll }) => {
   return (
-    <div
-      className={classNames({
-        [`${styles.withoutScroll__container}`]: !withScroll,
-        [`${styles.withScroll__container}`]: withScroll,
-      })}
-    >
-      <h3 className={styles.h3}>
-        <Link
-          to="/info/"
-          activeClassName={styles.activeAnchor}
-          className={classNames(styles.anchor, styles.infoAnchor)}
-        >
-          Info
-        </Link>
-      </h3>
-      <h3 className={styles.h3}>
-        <Link
-          to="/work/"
-          activeClassName={styles.activeAnchor}
-          className={styles.anchor}
-        >
-          work
-        </Link>
-      </h3>
-    </div>
+    <Scroll
+      render={({ y }) => {
+        return (
+          <div
+            className={classNames({
+              [`${styles.withoutScroll__container}`]: !withScroll,
+              [`${styles.withScroll__container}`]: withScroll,
+            })}
+          >
+            <h3 className={styles.h3}>
+              <Link
+                to="/info/"
+                activeClassName={styles.activeAnchor}
+                className={classNames(styles.anchor, styles.infoAnchor)}
+              >
+                Info
+              </Link>
+            </h3>
+            <h3 className={styles.h3}>
+              <Link
+                to="/work/"
+                getProps={() =>
+                  y > 220 && {
+                    className: styles.activeAnchor,
+                  }
+                }
+                activeClassName={styles.activeAnchor}
+                className={styles.anchor}
+              >
+                work
+              </Link>
+            </h3>
+          </div>
+        );
+      }}
+    />
   );
 };
