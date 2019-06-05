@@ -1,7 +1,8 @@
-import React from "react";
+import React, { Component } from "react";
 import { graphql } from "gatsby";
 import { WindowSize } from "react-fns";
 
+import DynamicTitle from "../components/index/DynamicTitle";
 import ProjectThumbnail from "../components/index/ProjectThumbnail";
 import Layout from "../components/layout/layout";
 import SEO from "../components/seo";
@@ -20,37 +21,58 @@ import styles from "./index.module.css";
  * 3. make use of window resize and a simple formula to derive how to scale the images
  */
 
-const IndexPage = ({
-  data: {
-    allContentfulIndexPage: { edges: assets },
-  },
-}) => {
-  return (
-    <Layout isMainPage>
-      <SEO title="Megun" keywords={[`gatsby`, `application`, `react`]} />
-      <WindowSize
-        render={({ width: innerWidth, height: innerHeight }) => {
-          return (
-            <section className={styles.container}>
-              {assets.map((asset, idx) => {
-                return (
-                  <ProjectThumbnail
-                    key={asset.node.id}
-                    asset={asset}
-                    innerWidth={innerWidth}
-                    innerHeight={innerHeight}
-                    isFirst={idx === 0}
-                    isLast={idx === assets.length - 1}
-                  />
-                );
-              })}
-            </section>
-          );
-        }}
-      />
-    </Layout>
-  );
-};
+class IndexPage extends Component {
+  state = {
+    currentTitle: "",
+  };
+
+  handleCurrentTitle = title => {
+    this.setState(state => ({
+      ...state,
+      currentTitle: title,
+    }));
+  };
+
+  render() {
+    const {
+      data: {
+        allContentfulIndexPage: { edges: assets },
+      },
+    } = this.props;
+
+    const projectThumbnails = ({ width: innerWidth, height: innerHeight }) => {
+      return (
+        <section className={styles.container}>
+          {assets.map((asset, idx) => {
+            const {
+              node: { title },
+            } = asset;
+            return (
+              <ProjectThumbnail
+                currentTitle={this.state.currentTitle}
+                isCurrent={this.state.currentTitle === title}
+                key={asset.node.id}
+                asset={asset}
+                innerWidth={innerWidth}
+                innerHeight={innerHeight}
+                handleCurrentTitle={this.handleCurrentTitle}
+                isFirst={idx === 0}
+                isLast={idx === assets.length - 1}
+              />
+            );
+          })}
+        </section>
+      );
+    };
+
+    return (
+      <Layout isMainPage>
+        <SEO title="Megun" keywords={[`gatsby`, `application`, `react`]} />
+        <WindowSize render={projectThumbnails} />
+      </Layout>
+    );
+  }
+}
 
 export default IndexPage;
 

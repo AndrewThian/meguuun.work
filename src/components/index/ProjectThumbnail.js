@@ -1,7 +1,7 @@
-import React, { useState, useRef } from "react";
+import React, { Component, createRef } from "react";
 import Img from "gatsby-image";
-import classNames from "classnames";
 import throttle from "lodash.throttle";
+import classNames from "classnames";
 
 import styles from "./ProjectThumbnail.module.css";
 
@@ -34,95 +34,122 @@ const getAreaLimit = browserAspectRatio => {
   return browserAspectRatio < 1 ? 4.5 : 7;
 };
 
-const defaultMouseState = {
-  posX: 0,
-  posY: 0,
-  intersect: false,
-};
+class ProjectThumbnail extends Component {
+  titleEle = null;
+  imgEle = null;
 
-const getRelativePos = (event, bounding) => {
-  return [
-    Math.round(Math.ceil(event.clientY - bounding.top)),
-    Math.round(Math.ceil(event.clientX - bounding.left)),
-  ];
-};
+  state = {
+    top: 0,
+    left: 0,
+    titleWidth: 0,
+  };
 
-const ProjectThumbnail = ({
-  asset: {
-    node: {
-      title,
-      thumbnail: { file, fluid },
+  titleRef = createRef();
+
+  componentDidMount() {
+    const titleElement = this.titleRef.current;
+    if (titleElement) {
+      this.storeElementDimensions({ titleWidth: titleElement.offsetWidth });
+    }
+  }
+
+  storeElementDimensions(titleDimensions) {
+    this.setState(state => ({
+      ...state,
+      ...titleDimensions,
+    }));
+  }
+
+  getDiffRatio(srcWidth, srcHeight) {
+    const { innerWidth, innerHeight } = this.props;
+    const browserAspectRatio = getAspectRatio(innerWidth, innerHeight);
+    const areaLimit = getAreaLimit(browserAspectRatio);
+    const maxArea = (innerWidth * innerHeight) / areaLimit;
+    return Math.sqrt(maxArea / (srcWidth * srcHeight));
+  }
+
+  throttledEventHandler = throttle(
+    e => {
+      const { top: imgTop, left: imgLeft } = e.target.getBoundingClientRect();
+      const { clientX, clientY } = e;
+
+      this.setState(state => ({
+        ...state,
+        top: clientY - imgTop,
+        left: clientX - imgLeft,
+      }));
     },
-  },
-  innerWidth,
-  innerHeight,
-  isFirst,
-  isLast,
-}) => {
-  const [srcWidth, srcHeight] = getOriginalImgDetails(file);
-  const browserAspectRatio = getAspectRatio(innerWidth, innerHeight);
-  const areaLimit = getAreaLimit(browserAspectRatio);
-  const maxArea = (innerWidth * innerHeight) / areaLimit;
-  const diffRatio = Math.sqrt(maxArea / (srcWidth * srcHeight));
+    16,
+    { leading: true }
+  );
 
-  // const [mouseState, setMouseState] = useState(defaultMouseState);
+  handlePointerMove = e => {
+    e.persist();
+    this.throttledEventHandler(e);
+  };
 
-  // const onMouseMove = event => {
-  //   event.persist();
-  //   console.log("moving");
-  //   // useRef to get dom element then set the bounding client
-  //   const bounding = event.target.getBoundingClientRect();
-  //   const { clientX, clientY } = event;
-  //   const { top, left } = bounding;
-  //   const [posX, posY] = getRelativePos({ clientX, clientY }, { top, left });
-  //   setMouseState({
-  //     posX,
-  //     posY,
-  //     intersect: true,
-  //   });
-  // };
+  handlePointerEnter = () => {
+    const {
+      asset: {
+        node: { title },
+      },
+      handleCurrentTitle,
+    } = this.props;
+    handleCurrentTitle(title);
+  };
 
-  // const handleMouseLeave = () => {
-  //   setMouseState(defaultMouseState);
-  // };
+  handlePointerLeave = () => {
+    const { handleCurrentTitle } = this.props;
+    handleCurrentTitle("");
+  };
 
-  // const throttleOnMouseMove = useRef(
-  //   throttle(onMouseMove, 16, { leading: true })
-  // );
+  render() {
+    const {
+      isFirst,
+      isLast,
+      asset: {
+        node: {
+          title,
+          thumbnail: { fluid, file },
+        },
+      },
+    } = this.props;
 
-  // const persistMouseMove = e => {
-  //   e.persist();
-  //   throttleOnMouseMove.current(e);
-  // };
+    const [srcWidth, srcHeight] = getOriginalImgDetails(file);
+    const diffRatio = this.getDiffRatio(srcWidth, srcHeight);
 
-  return (
-    <div
-      className={classNames(styles.image__container, {
-        [styles.isFirst]: isFirst,
-        [styles.isLast]: isLast,
-      })}
-      style={{
-        width: srcWidth * diffRatio,
-        height: srcHeight * diffRatio,
-      }}
-      // onMouseMove={persistMouseMove}
-      // onMouseLeave={handleMouseLeave}
-    >
-      <Img fluid={fluid} alt={title} />
-      {/* <span
-        className={classNames(styles.title, {
-          [styles.title__mouseEnter]: mouseState.intersect,
+    return (
+      <div
+        className={classNames(styles.image__container, {
+          [styles.isFirst]: isFirst,
+          [styles.isLast]: isLast,
         })}
-        onMouseMove={e => e.stopPropagation()}
+        onPointerEnter={this.handlePointerEnter}
+        onPointerMove={this.handlePointerMove}
+        onPointerLeave={this.handlePointerLeave}
         style={{
-          top: mouseState.posX,
-          left: mouseState.posY,
+          width: srcWidth * diffRatio,
+          height: srcHeight * diffRatio,
         }}
       >
-        {title}
-      </span> */}
-    </div>
-  );
-};
+        <Img fluid={fluid} alt={title} className={styles.image} />
+        {this.props.isCurrent && (
+          <p
+            className={styles.text__dynamic}
+            style={{
+              top: this.state.top,
+              left: this.state.left - this.state.titleWidth,
+            }}
+          >
+            {this.props.currentTitle}
+          </p>
+        )}
+        <p ref={this.titleRef} className={styles.text__static}>
+          {title}
+        </p>
+      </div>
+    );
+  }
+}
 
 export default ProjectThumbnail;

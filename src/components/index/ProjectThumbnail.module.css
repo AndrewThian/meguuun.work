@@ -5,12 +5,48 @@
   position: relative;
 }
 
+.image__container:hover {
+  cursor: none;
+}
+
+.image {
+  z-index: 1;
+}
+
+.image:hover {
+  opacity: 0.5;
+}
+
 .isFirst {
   margin-top: 0;
 }
 
 .isLast {
   margin-bottom: 0;
+}
+
+.title {
+  position: absolute;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.text__static,
+.text__dynamic {
+  pointer-events: none;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+  width: fit-content;
+  z-index: 10;
+}
+
+.text__dynamic {
+  position: absolute;
+}
+
+.text__static {
+  opacity: 0;
 }
 
 @media only screen and (max-width: 600px) {
@@ -25,17 +61,4 @@
     display: inline-block;
     margin: 1.5em;
   }
-}
-
-.image__mouseEnter {
-  cursor: none;
-}
-
-.title {
-  display: none;
-}
-
-.title__mouseEnter {
-  display: inline-block;
-  position: absolute;
 }
