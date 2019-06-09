@@ -15,7 +15,12 @@
 // };
 import React from "react";
 import LaxWrapper from "./src/utils/LaxWrapper";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 export const wrapRootElement = ({ element }) => {
-  return <LaxWrapper>{element}</LaxWrapper>;
+  return (
+    <ParallaxProvider>
+      <LaxWrapper>{element}</LaxWrapper>
+    </ParallaxProvider>
+  );
 };

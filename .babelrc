@@ -5,6 +5,7 @@
       {
         "loose": true,
         "modules": false,
+        "corejs": "2",
         "useBuiltIns": "usage",
         "shippedProposals": true,
         "targets": {
@@ -15,6 +16,7 @@
     [
       "@babel/preset-react",
       {
+        "corejs": "2",
         "useBuiltIns": true,
         "pragma": "React.createElement"
       }

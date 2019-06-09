@@ -1,3 +1,7 @@
+.parallax__container {
+  display: inline-block;
+}
+
 .image__container {
   display: inline-block;
   margin: 2em 1.5em;

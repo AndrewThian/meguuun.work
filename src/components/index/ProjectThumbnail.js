@@ -2,8 +2,17 @@ import React, { Component, createRef } from "react";
 import Img from "gatsby-image";
 import throttle from "lodash.throttle";
 import classNames from "classnames";
+import { Parallax } from "react-scroll-parallax";
 
 import styles from "./ProjectThumbnail.module.css";
+
+/* diff ratio constants */
+const landscape = 4.5;
+const portrait = 6;
+
+/* parallax constants */
+const parallaxMin = 10;
+const parallaxMax = -10;
 
 const getOriginalImgDetails = ({
   details: {
@@ -11,6 +20,10 @@ const getOriginalImgDetails = ({
   },
 }) => {
   return [width, height];
+};
+
+const getRandomInt = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 /**
@@ -28,8 +41,6 @@ const getAspectRatio = (width, height) => {
  * the area limit of each project thumbnail
  * @param {number} browserAspectRatio
  */
-const landscape = 4.5;
-const portrait = 6;
 
 const getAreaLimit = browserAspectRatio => {
   return browserAspectRatio < 1 ? landscape : portrait;
@@ -46,8 +57,10 @@ class ProjectThumbnail extends Component {
   };
 
   titleRef = createRef();
+  yOffset = 0;
 
   componentDidMount() {
+    this.yOffset = getRandomInt(parallaxMin, parallaxMax);
     const titleElement = this.titleRef.current;
     if (titleElement) {
       this.storeElementDimensions({ titleWidth: titleElement.offsetWidth });
@@ -86,10 +99,13 @@ class ProjectThumbnail extends Component {
 
   handlePointerMove = e => {
     e.persist();
+    e.stopPropagation();
     this.throttledEventHandler(e);
   };
 
-  handlePointerEnter = () => {
+  handlePointerEnter = e => {
+    e.persist();
+    e.stopPropagation();
     const {
       asset: {
         node: { title },
@@ -99,13 +115,16 @@ class ProjectThumbnail extends Component {
     handleCurrentTitle(title);
   };
 
-  handlePointerLeave = () => {
+  handlePointerLeave = e => {
+    e.persist();
+    e.stopPropagation();
     const { handleCurrentTitle } = this.props;
     handleCurrentTitle("");
   };
 
   render() {
     const {
+      idx,
       isFirst,
       isLast,
       innerWidth,
@@ -157,18 +176,23 @@ class ProjectThumbnail extends Component {
     );
 
     const desktopContainer = (
-      <div
-        className={className}
-        onPointerEnter={this.handlePointerEnter}
-        onPointerMove={this.handlePointerMove}
-        onPointerLeave={this.handlePointerLeave}
-        style={{
-          width: srcWidth * diffRatio,
-          height: srcHeight * diffRatio,
-        }}
+      <Parallax
+        className={styles.parallax__container}
+        y={[this.yOffset * (idx + 1) + "px", -this.yOffset * (idx + 1) + "px"]}
       >
-        {children}
-      </div>
+        <div
+          className={className}
+          onPointerEnter={this.handlePointerEnter}
+          onPointerMove={this.handlePointerMove}
+          onPointerLeave={this.handlePointerLeave}
+          style={{
+            width: srcWidth * diffRatio,
+            height: srcHeight * diffRatio,
+          }}
+        >
+          {children}
+        </div>
+      </Parallax>
     );
 
     const isMobile = innerWidth < 800;

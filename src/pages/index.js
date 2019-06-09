@@ -48,6 +48,7 @@ class IndexPage extends Component {
             } = asset;
             return (
               <ProjectThumbnail
+                idx={idx}
                 currentTitle={this.state.currentTitle}
                 isCurrent={this.state.currentTitle === title}
                 key={asset.node.id}
