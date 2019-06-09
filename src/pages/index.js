@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { graphql } from "gatsby";
 import { WindowSize } from "react-fns";
 
-import DynamicTitle from "../components/index/DynamicTitle";
 import ProjectThumbnail from "../components/index/ProjectThumbnail";
 import Layout from "../components/layout/layout";
 import SEO from "../components/seo";
@@ -68,7 +67,7 @@ class IndexPage extends Component {
     return (
       <Layout isMainPage>
         <SEO title="Megun" keywords={[`gatsby`, `application`, `react`]} />
-        <WindowSize render={projectThumbnails} />
+        <WindowSize throttle={32} render={projectThumbnails} />
       </Layout>
     );
   }

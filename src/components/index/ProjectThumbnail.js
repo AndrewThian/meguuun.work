@@ -27,11 +27,12 @@ const getAspectRatio = (width, height) => {
  * @description uses an arbitrary number to get
  * the area limit of each project thumbnail
  * @param {number} browserAspectRatio
- * @hardcoded landscape: [4.5]
- * @hardcoded potrait: [7]
  */
+const landscape = 4.5;
+const portrait = 6;
+
 const getAreaLimit = browserAspectRatio => {
-  return browserAspectRatio < 1 ? 4.5 : 7;
+  return browserAspectRatio < 1 ? landscape : portrait;
 };
 
 class ProjectThumbnail extends Component {
@@ -61,10 +62,11 @@ class ProjectThumbnail extends Component {
   }
 
   getDiffRatio(srcWidth, srcHeight) {
-    const { innerWidth, innerHeight } = this.props;
-    const browserAspectRatio = getAspectRatio(innerWidth, innerHeight);
+    const { innerWidth } = this.props;
+    const documentInnerHeight = document.documentElement.clientHeight;
+    const browserAspectRatio = getAspectRatio(innerWidth, documentInnerHeight);
     const areaLimit = getAreaLimit(browserAspectRatio);
-    const maxArea = (innerWidth * innerHeight) / areaLimit;
+    const maxArea = (innerWidth * documentInnerHeight) / areaLimit;
     return Math.sqrt(maxArea / (srcWidth * srcHeight));
   }
 
@@ -72,7 +74,6 @@ class ProjectThumbnail extends Component {
     e => {
       const { top: imgTop, left: imgLeft } = e.target.getBoundingClientRect();
       const { clientX, clientY } = e;
-
       this.setState(state => ({
         ...state,
         top: clientY - imgTop,
@@ -107,6 +108,7 @@ class ProjectThumbnail extends Component {
     const {
       isFirst,
       isLast,
+      innerWidth,
       asset: {
         node: {
           title,
@@ -117,21 +119,13 @@ class ProjectThumbnail extends Component {
 
     const [srcWidth, srcHeight] = getOriginalImgDetails(file);
     const diffRatio = this.getDiffRatio(srcWidth, srcHeight);
+    const className = classNames(styles.image__container, {
+      [styles.isFirst]: isFirst,
+      [styles.isLast]: isLast,
+    });
 
-    return (
-      <div
-        className={classNames(styles.image__container, {
-          [styles.isFirst]: isFirst,
-          [styles.isLast]: isLast,
-        })}
-        onPointerEnter={this.handlePointerEnter}
-        onPointerMove={this.handlePointerMove}
-        onPointerLeave={this.handlePointerLeave}
-        style={{
-          width: srcWidth * diffRatio,
-          height: srcHeight * diffRatio,
-        }}
-      >
+    const children = (
+      <>
         <Img fluid={fluid} alt={title} className={styles.image} />
         {this.props.isCurrent && (
           <p
@@ -147,8 +141,39 @@ class ProjectThumbnail extends Component {
         <p ref={this.titleRef} className={styles.text__static}>
           {title}
         </p>
+      </>
+    );
+
+    const mobileContainer = (
+      <div
+        className={className}
+        style={{
+          width: srcWidth * diffRatio,
+          height: srcHeight * diffRatio,
+        }}
+      >
+        {children}
       </div>
     );
+
+    const desktopContainer = (
+      <div
+        className={className}
+        onPointerEnter={this.handlePointerEnter}
+        onPointerMove={this.handlePointerMove}
+        onPointerLeave={this.handlePointerLeave}
+        style={{
+          width: srcWidth * diffRatio,
+          height: srcHeight * diffRatio,
+        }}
+      >
+        {children}
+      </div>
+    );
+
+    const isMobile = innerWidth < 800;
+
+    return isMobile ? mobileContainer : desktopContainer;
   }
 }
 
