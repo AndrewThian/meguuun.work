@@ -74,13 +74,23 @@ class ProjectThumbnail extends Component {
     }));
   }
 
+  getBrowserHeight() {
+    const { innerHeight } = this.props;
+
+    let height = innerHeight;
+    if (typeof window !== "undefined") {
+      height = document.documentElement.clientHeight;
+    }
+
+    return height;
+  }
+
   getDiffRatio(srcWidth, srcHeight) {
-    const { innerWidth, innerHeight } = this.props;
-    const documentInnerHeight =
-      (document && document.documentElement.clientHeight) || innerHeight;
-    const browserAspectRatio = getAspectRatio(innerWidth, documentInnerHeight);
+    const { innerWidth } = this.props;
+    const height = this.getBrowserHeight();
+    const browserAspectRatio = getAspectRatio(innerWidth, height);
     const areaLimit = getAreaLimit(browserAspectRatio);
-    const maxArea = (innerWidth * documentInnerHeight) / areaLimit;
+    const maxArea = (innerWidth * height) / areaLimit;
     return Math.sqrt(maxArea / (srcWidth * srcHeight));
   }
 
