@@ -75,8 +75,9 @@ class ProjectThumbnail extends Component {
   }
 
   getDiffRatio(srcWidth, srcHeight) {
-    const { innerWidth } = this.props;
-    const documentInnerHeight = document.documentElement.clientHeight;
+    const { innerWidth, innerHeight } = this.props;
+    const documentInnerHeight =
+      (document && document.documentElement.clientHeight) || innerHeight;
     const browserAspectRatio = getAspectRatio(innerWidth, documentInnerHeight);
     const areaLimit = getAreaLimit(browserAspectRatio);
     const maxArea = (innerWidth * documentInnerHeight) / areaLimit;
