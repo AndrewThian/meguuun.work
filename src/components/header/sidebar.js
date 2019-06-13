@@ -37,7 +37,7 @@ export const Sidebar = ({ withScroll }) => {
             </h3>
             <h3 className={styles.h3}>
               <Link
-                to="/work/"
+                to="/#work"
                 getProps={() =>
                   y > 220 && {
                     className: styles.activeAnchor,

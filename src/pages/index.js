@@ -41,7 +41,7 @@ class IndexPage extends Component {
 
     const projectThumbnails = ({ width: innerWidth, height: innerHeight }) => {
       return (
-        <section className={styles.container}>
+        <section id="work" className={styles.container}>
           {assets.map((asset, idx) => {
             const {
               node: { title },
