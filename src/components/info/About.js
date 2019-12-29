@@ -17,7 +17,6 @@ const About = () => (
               comments {
                 comments
               }
-              featuredOn
               contact {
                 id
                 email
@@ -36,7 +35,7 @@ const About = () => (
               id,
               summary: { summary: summaryText },
               comments: { comments: commentsText },
-              featuredOn,
+              // featuredOn,
               contact: { email, phoneNumber },
             },
           }) => (
@@ -47,7 +46,7 @@ const About = () => (
               <div>
                 <span>Featured on</span>
                 <div className={styles.featured__innerContainer}>
-                  {featuredOn.map(feature => (
+                  {[].map(feature => (
                     <span
                       key={feature}
                       className={classNames(styles.bold, styles.italic)}

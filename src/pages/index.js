@@ -44,7 +44,9 @@ class IndexPage extends Component {
         <section id="work" className={styles.container}>
           {assets.map((asset, idx) => {
             const {
-              node: { title },
+              node: {
+                metadata: { slug, title },
+              },
             } = asset;
             return (
               <ProjectThumbnail
@@ -82,7 +84,10 @@ export const query = graphql`
       edges {
         node {
           id
-          title
+          metadata {
+            slug
+            title
+          }
           thumbnail {
             file {
               details {
