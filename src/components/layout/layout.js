@@ -8,10 +8,6 @@ import Block from "../block";
 import styles from "./layout.module.css";
 import "./global.css";
 
-if (typeof window !== undefined) {
-  require("smooth-scroll")('a[href*="#"]');
-}
-
 const Layout = ({ children, isMainPage, className, innerClassName }) => {
   return (
     <StaticQuery

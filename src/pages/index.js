@@ -45,7 +45,7 @@ class IndexPage extends Component {
           {assets.map((asset, idx) => {
             const {
               node: {
-                metadata: { slug, title },
+                metadata: { title },
               },
             } = asset;
             return (
@@ -80,7 +80,9 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    allContentfulIndexPage {
+    allContentfulIndexPage(
+      sort: { fields: [metadata___position], order: ASC }
+    ) {
       edges {
         node {
           id

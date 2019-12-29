@@ -119,7 +119,9 @@ class ProjectThumbnail extends Component {
     e.stopPropagation();
     const {
       asset: {
-        node: { title },
+        node: {
+          metadata: { title },
+        },
       },
       handleCurrentTitle,
     } = this.props;
@@ -141,7 +143,7 @@ class ProjectThumbnail extends Component {
       innerWidth,
       asset: {
         node: {
-          title,
+          metadata: { title },
           thumbnail: { fluid, file },
         },
       },
@@ -154,7 +156,7 @@ class ProjectThumbnail extends Component {
       [styles.isLast]: isLast,
     });
 
-    const children = (
+    const thumbnailImage = (
       <>
         <Img fluid={fluid} alt={title} className={styles.image} />
         {this.props.isCurrent && (
@@ -179,10 +181,10 @@ class ProjectThumbnail extends Component {
         className={className}
         style={{
           width: srcWidth * diffRatio,
-          height: srcHeight * diffRatio,
+          height: srcHeight * diffRatio + 40,
         }}
       >
-        {children}
+        {thumbnailImage}
       </div>
     );
 
@@ -201,12 +203,12 @@ class ProjectThumbnail extends Component {
             height: srcHeight * diffRatio,
           }}
         >
-          {children}
+          {thumbnailImage}
         </div>
       </Parallax>
     );
 
-    const isMobile = innerWidth < 800;
+    const isMobile = innerWidth < 1024;
 
     return isMobile ? mobileContainer : desktopContainer;
   }
