@@ -27,6 +27,7 @@
     "react-helmet": "^5.2.1",
     "react-scroll-parallax": "^2.2.0",
     "react-transition-group": "4.3.0",
+    "slash": "^3.0.0",
     "ts-pnp": "^1.1.5",
     "typescript": "^3.7.4"
   },
