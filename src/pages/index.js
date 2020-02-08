@@ -45,7 +45,7 @@ class IndexPage extends Component {
           {assets.map((asset, idx) => {
             const {
               node: {
-                metadata: { title },
+                metadata: { title, slug },
               },
             } = asset;
             return (
