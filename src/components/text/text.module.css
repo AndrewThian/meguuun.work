@@ -1,0 +1,17 @@
+.p:not(:last-child) {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.container {
+  max-width: 33%;
+}
+
+.title {
+  font-size: 35px;
+  text-decoration: underline;
+}
+
+.title.marginBottom {
+  margin-bottom: 16px;
+}

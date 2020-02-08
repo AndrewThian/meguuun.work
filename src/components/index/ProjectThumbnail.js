@@ -1,4 +1,5 @@
 import React, { Component, createRef } from "react";
+import { navigate } from "gatsby";
 import Img from "gatsby-image";
 import throttle from "lodash.throttle";
 import classNames from "classnames";
@@ -135,6 +136,17 @@ class ProjectThumbnail extends Component {
     handleCurrentTitle("");
   };
 
+  navigate = () => {
+    const {
+      asset: {
+        node: {
+          metadata: { slug },
+        },
+      },
+    } = this.props;
+    navigate(`/work/${slug}`);
+  };
+
   render() {
     const {
       idx,
@@ -143,7 +155,7 @@ class ProjectThumbnail extends Component {
       innerWidth,
       asset: {
         node: {
-          metadata: { title },
+          metadata: { title, slug },
           thumbnail: { fluid, file },
         },
       },
@@ -178,6 +190,7 @@ class ProjectThumbnail extends Component {
 
     const mobileContainer = (
       <div
+        onClick={this.navigate}
         className={className}
         style={{
           width: srcWidth * diffRatio,
@@ -194,6 +207,7 @@ class ProjectThumbnail extends Component {
         y={[this.yOffset * (idx + 1) + "px", -this.yOffset * (idx + 1) + "px"]}
       >
         <div
+          onClick={this.navigate}
           className={className}
           onPointerEnter={this.handlePointerEnter}
           onPointerMove={this.handlePointerMove}

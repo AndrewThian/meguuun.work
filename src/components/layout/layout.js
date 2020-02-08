@@ -31,7 +31,7 @@ const Layout = ({ children, isMainPage, className, innerClassName }) => {
           >
             {isMainPage && <Block />}
             <main
-              className={classNames(styles.main__container, innerClassName, {
+              className={classNames(innerClassName, styles.main__container, {
                 [styles.isMain]: isMainPage,
                 [styles.main__isMain]: isMainPage,
               })}
