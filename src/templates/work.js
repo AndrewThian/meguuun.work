@@ -121,6 +121,11 @@ export const query = graphql`
         id
         position
         typeOfImage
+        asset {
+          fluid(maxWidth: 1500, quality: 100) {
+            ...GatsbyContentfulFluid_withWebp_noBase64
+          }
+        }
       }
     }
   }
