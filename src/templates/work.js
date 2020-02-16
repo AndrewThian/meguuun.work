@@ -22,6 +22,7 @@ const Image = ({
     typeOfImage,
   },
 }) => {
+  // console.log(fluid.src)
   return (
     <div
       className={cx(className, {

@@ -1,6 +1,6 @@
 //  https://repl.it/@AndrewThian/extracting-position-from-data
 
-const hash = {}
+let hash = {}
 
 function extract(obj) {
   /**
@@ -18,11 +18,17 @@ function extract(obj) {
 }
 
 export default (...datas) => {
+  /**
+   * reset new hash on every function call
+   * to prevent stale state
+   */
+  hash = {}
   const isNotNull = e => {
     const k = Object.keys(e)
     return !!e[k]
   }
   datas.filter(isNotNull).forEach(data => {
+    
     extract(data)
   })
 
