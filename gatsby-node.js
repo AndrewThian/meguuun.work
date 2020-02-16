@@ -32,12 +32,7 @@ module.exports = {
 
     await Promise.all(
       edges.map(async edge => {
-        const {
-          node: {
-            metadata: { slug },
-          },
-        } = edge;
-
+        const slug = edge.node.metadata.slug
         const {
           data: { contentfulDetailPage },
         } = await graphql(

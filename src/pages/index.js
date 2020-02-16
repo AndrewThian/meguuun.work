@@ -99,7 +99,7 @@ export const query = graphql`
                 }
               }
             }
-            fluid {
+            fluid(maxWidth: 800, quality: 99) {
               ...GatsbyContentfulFluid_withWebp_noBase64
             }
           }
