@@ -3,15 +3,31 @@
   margin-bottom: 16px;
 }
 
-.container {
-  max-width: 33%;
-}
-
 .title {
   font-size: 35px;
   text-decoration: underline;
 }
 
+.container {
+  display: flex;
+}
+
+.container.center {
+  justify-content: center;
+  align-items: center;
+}
+
+.element {
+  max-width: 33%;
+  min-width: 300px;
+}
+
 .title.marginBottom {
   margin-bottom: 16px;
+}
+
+@media only screen and (max-width: 600px) {
+  .container {
+    max-width: 100%;
+  }
 }

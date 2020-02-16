@@ -33,17 +33,15 @@ const Title = ({ children }) => {
   return <h3 className={cx(styles.title, styles.marginBottom)}>{children}</h3>;
 };
 
-export default ({ detailPage: { content } }) => {
+export default ({ className, data: { textNode: { richTextDocument }, title, contentType } }) => {
   return (
-    <div className={styles.container}>
-      {content.map(({ title, id, textNode: { richTextDocument } }) => {
-        return (
-          <div key={id}>
-            <Title>{title}</Title>
-            {documentToReactComponents(richTextDocument, options)}
-          </div>
-        );
-      })}
+    <div className={cx(className, styles.container, {
+      [styles.center]: contentType === 'center'
+    })}>
+      <div className={cx(styles.element)}>
+        {title && <Title>{title}</Title>}
+        {documentToReactComponents(richTextDocument, options)}
+      </div>
     </div>
   );
 };

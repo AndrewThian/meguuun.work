@@ -1,3 +1,24 @@
 .layout.layout {
-  padding-top: 175px;
+  padding-top: 180px;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.container {
+  display: grid;
+  gap: 70px;
+}
+
+.container span,
+.container p {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.element {
+  margin: 0px 180px;
+}
+
+.fullBleed {
+  margin: 0px;
 }
