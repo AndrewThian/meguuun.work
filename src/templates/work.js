@@ -23,9 +23,11 @@ const Image = ({
   },
 }) => {
   return (
-    <div className={cx(className, {
-      [styles.fullBleed]: typeOfImage === "full bleed"
-    })}>
+    <div
+      className={cx(className, {
+        [styles.fullBleed]: typeOfImage === "full bleed",
+      })}
+    >
       <Img fluid={fluid} />
     </div>
   );
@@ -70,6 +72,7 @@ const WorkPage = ({ data }) => {
       videos = null,
     },
   } = data;
+
   const { hash, positionIDs } = extractor({ content }, { images }, { videos });
 
   return (
@@ -93,8 +96,8 @@ const WorkPage = ({ data }) => {
 export default WorkPage;
 
 export const query = graphql`
-  query($slug: String!) {
-    detailPage: contentfulDetailPage(metadata: { slug: { eq: $slug } }) {
+  query($id: String!) {
+    detailPage: contentfulDetailPage(id: { eq: $id }) {
       id
       content {
         id
@@ -118,11 +121,6 @@ export const query = graphql`
         id
         position
         typeOfImage
-        asset {
-          fluid(maxWidth: 1500, quality: 100) {
-            ...GatsbyContentfulFluid_withWebp_noBase64
-          }
-        }
       }
     }
   }

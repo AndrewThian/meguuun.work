@@ -24,26 +24,44 @@ module.exports = {
       }
     `);
 
-    const workTemplate = path.resolve("./src/pages/work.js");
+    const workTemplate = path.resolve("./src/templates/work.js");
 
     const {
       allContentfulIndexPage: { edges },
     } = data;
-    edges.forEach(edge => {
-      const {
-        node: {
-          metadata: { slug },
-        },
-      } = edge;
-      const { createPage } = actions;
-      createPage({
-        path: `/work/${slug}`,
-        component: slash(workTemplate),
-        context: {
-          slug,
-          id: edge.node.id,
-        },
-      });
-    });
+
+    await Promise.all(
+      edges.map(async edge => {
+        const {
+          node: {
+            metadata: { slug },
+          },
+        } = edge;
+
+        const {
+          data: { contentfulDetailPage },
+        } = await graphql(
+          `
+            query($slug: String!) {
+              contentfulDetailPage(metadata: { slug: { eq: $slug } }) {
+                id
+              }
+            }
+          `,
+          { slug: slug }
+        );
+        const { createPage } = actions;
+
+        if (contentfulDetailPage) {
+          createPage({
+            path: `/work/${slug}`,
+            component: slash(workTemplate),
+            context: {
+              id: contentfulDetailPage.id,
+            },
+          });
+        }
+      })
+    );
   },
 };
