@@ -81,7 +81,7 @@ export default IndexPage;
 export const query = graphql`
   query {
     allContentfulIndexPage(
-      sort: { fields: [metadata___position], order: ASC }
+      sort: { fields: [metadata___position], order: DESC }
     ) {
       edges {
         node {
