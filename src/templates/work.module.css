@@ -23,3 +23,20 @@
 .fullBleed {
   margin: 0px;
 }
+
+@media only screen and (max-width: 600px) {
+  .element {
+    margin: 0px;
+
+    padding-left: 70px;
+    padding-right: 8%;
+  }
+
+  .fullBleed {
+    padding: 0px;
+  }
+
+  .layout.layout {
+    padding: 110px 0;
+  }
+}

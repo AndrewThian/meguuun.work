@@ -16,7 +16,6 @@ const WorkList = () => {
                 position
                 startOfJob
                 endOfJob
-                misc
               }
             }
           }
