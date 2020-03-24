@@ -14,9 +14,6 @@ const About = () => (
               summary {
                 summary
               }
-              comments {
-                comments
-              }
               contact {
                 id
                 email
@@ -34,8 +31,6 @@ const About = () => (
             node: {
               id,
               summary: { summary: summaryText },
-              comments: { comments: commentsText },
-              // featuredOn,
               contact: { email, phoneNumber },
             },
           }) => (
@@ -55,9 +50,6 @@ const About = () => (
                     </span>
                   ))}
                 </div>
-              </div>
-              <div>
-                <span>{commentsText}</span>
               </div>
               <div>
                 <div>
