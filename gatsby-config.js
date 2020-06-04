@@ -1,6 +1,6 @@
-const SPACE = process.env.GATSBY_CONTENTFUL_SPACE_ID;
-const TOKEN = process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN;
-const HOST = process.env.GATSBY_CONTENTFUL_HOST;
+const SPACE = process.env.CONTENTFUL_SPACE_ID;
+const TOKEN = process.env.CONTENTFUL_ACCESS_TOKEN;
+const HOST = process.env.CONTENTFUL_HOST;
 
 module.exports = {
   siteMetadata: {
