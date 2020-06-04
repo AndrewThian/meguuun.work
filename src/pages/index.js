@@ -35,7 +35,7 @@ class IndexPage extends Component {
   render() {
     const {
       data: {
-        allContentfulIndexPage: { edges: assets },
+        allContentfulIndexPageThumbnails: { edges: assets },
       },
     } = this.props;
 
@@ -80,7 +80,7 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    allContentfulIndexPage(
+    allContentfulIndexPageThumbnails(
       sort: { fields: [metadata___position], order: DESC }
     ) {
       edges {
