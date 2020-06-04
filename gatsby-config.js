@@ -1,3 +1,7 @@
+const SPACE = process.env.GATSBY_CONTENTFUL_SPACE_ID;
+const TOKEN = process.env.GATSBY_CONTENTFUL_ACCESS_TOKEN;
+const HOST = process.env.GATSBY_CONTENTFUL_HOST;
+
 module.exports = {
   siteMetadata: {
     title: `Megan Low`,
@@ -18,8 +22,9 @@ module.exports = {
     {
       resolve: `gatsby-source-contentful`,
       options: {
-        spaceId: `47d45u88cykb`,
-        accessToken: `fd19dcdecb73b23f7272eb988013ef673b0902f7225dc9f4c331a5bc25033a7f`,
+        spaceId: SPACE,
+        accessToken: TOKEN,
+        host: HOST,
       },
     },
     {
