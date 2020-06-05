@@ -35,31 +35,30 @@ class IndexPage extends Component {
   render() {
     const {
       data: {
-        allContentfulIndexPageThumbnails: { edges: assets },
+        contentfulIndexPagePositioning: { thumbnails },
       },
     } = this.props;
 
     const projectThumbnails = ({ width: innerWidth, height: innerHeight }) => {
       return (
         <section id="work" className={styles.container}>
-          {assets.map((asset, idx) => {
+          {thumbnails.map((asset, idx) => {
             const {
-              node: {
-                metadata: { title, slug },
-              },
+              metadata: { title },
+              id,
             } = asset;
             return (
               <ProjectThumbnail
                 idx={idx}
                 currentTitle={this.state.currentTitle}
                 isCurrent={this.state.currentTitle === title}
-                key={asset.node.id}
+                key={id}
                 asset={asset}
                 innerWidth={innerWidth}
                 innerHeight={innerHeight}
                 handleCurrentTitle={this.handleCurrentTitle}
                 isFirst={idx === 0}
-                isLast={idx === assets.length - 1}
+                isLast={idx === thumbnails.length - 1}
               />
             );
           })}
@@ -80,28 +79,24 @@ export default IndexPage;
 
 export const query = graphql`
   query {
-    allContentfulIndexPageThumbnails(
-      sort: { fields: [metadata___position], order: DESC }
-    ) {
-      edges {
-        node {
-          id
-          metadata {
-            slug
-            title
-          }
-          thumbnail {
-            file {
-              details {
-                originalImg: image {
-                  width
-                  height
-                }
+    contentfulIndexPagePositioning {
+      thumbnails {
+        id
+        metadata {
+          slug
+          title
+        }
+        thumbnail {
+          file {
+            details {
+              originalImg: image {
+                width
+                height
               }
             }
-            fluid(maxWidth: 800, quality: 99) {
-              ...GatsbyContentfulFluid_withWebp_noBase64
-            }
+          }
+          fluid(maxWidth: 800, quality: 99) {
+            ...GatsbyContentfulFluid_withWebp_noBase64
           }
         }
       }
