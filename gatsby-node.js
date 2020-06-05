@@ -12,7 +12,7 @@ module.exports = {
   createPages: async ({ graphql, actions }) => {
     const { data } = await graphql(`
       {
-        allContentfulIndexPageThumbnails {
+        allContentfulDetailPage {
           edges {
             node {
               metadata {
@@ -27,7 +27,7 @@ module.exports = {
     const workTemplate = path.resolve("./src/templates/work.js");
 
     const {
-      allContentfulIndexPageThumbnails: { edges },
+      allContentfulDetailPage: { edges },
     } = data;
 
     await Promise.all(
