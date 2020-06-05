@@ -120,9 +120,7 @@ class ProjectThumbnail extends Component {
     e.stopPropagation();
     const {
       asset: {
-        node: {
-          metadata: { title },
-        },
+        metadata: { title },
       },
       handleCurrentTitle,
     } = this.props;
@@ -139,9 +137,7 @@ class ProjectThumbnail extends Component {
   navigate = () => {
     const {
       asset: {
-        node: {
-          metadata: { slug },
-        },
+        metadata: { slug },
       },
     } = this.props;
     navigate(`/work/${slug}`);
@@ -154,10 +150,8 @@ class ProjectThumbnail extends Component {
       isLast,
       innerWidth,
       asset: {
-        node: {
-          metadata: { title, slug },
-          thumbnail: { fluid, file },
-        },
+        metadata: { title },
+        thumbnail: { fluid, file },
       },
     } = this.props;
 
